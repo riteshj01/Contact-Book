@@ -26,6 +26,22 @@ response.sendRedirect("login.jsp");
 </head>
 <body>
 <%@include file="navbar.jsp"%>
+<% String val =(String)session.getAttribute("suc-delete");
+String val1 = (String)session.getAttribute("error-delete");
+if(val!=null){%>
+<div class ="alert alert-success" role="alert"><%=val%></div>
+<%
+session.removeAttribute("suc-delete");
+
+}
+if(val1!=null){%>
+<div class ="alert alert-success" role="alert"><%=val%></div>
+<% session.removeAttribute("error-delete");}
+
+
+
+%>
+
 <div class="container">
 <div class="row p-4">
 <%if(user1!=null){
@@ -47,7 +63,7 @@ for(Contact c: cs){
 <p>userid: <%=user1.getId()%></p>
 <div class= "text-center">
 <a href= "edit.jsp?cid=<%=c.getId()%>" class="btn btn-success btn-sm text-white">Edit<a/>
-<a href= "delete.jsp?cid=<%=c.getId()%>" class="btn btn-danger btn-sm text-white">Delete<a/>
+<a href= "delete?cid=<%=c.getId()%>" class="btn btn-danger btn-sm text-white">Delete<a/>
 </div>
 </div>
 </div>

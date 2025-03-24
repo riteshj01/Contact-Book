@@ -31,6 +31,11 @@ session.setAttribute("id-msg",user2323);}%>
 
 
 <div class="card-body">
+
+<% String val =(String)session.getAttribute("fal-add");
+if(val!=null){ %>
+<div class ="alert alert-success" text-center role="alert"><%=val%></div>
+<%session.removeAttribute("fal-add");}%>
        <form action="addcontact" method="post">
 
 

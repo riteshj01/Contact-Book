@@ -29,10 +29,14 @@ public class addcontact extends HttpServlet{
             Contact cs = new Contact(name,email,phno,about,id1);
             Contactdao user1 = new Contactdao(dbconnect.getConnection());
             boolean f = user1.addContact(cs);
+            HttpSession session = req.getSession();
             if(f){
-                System.out.println("successful added");
+                session.setAttribute("suc-add","successfully added");
+                resp.sendRedirect("viewContact.jsp");
+
             }else{
-                System.out.println("unSuccessful and not added");
+                session.setAttribute("fal-add","Something is Wrong not added");
+                resp.sendRedirect("addContact.jsp");
             }
 
         }

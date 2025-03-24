@@ -27,4 +27,20 @@ public class delete extends HttpServlet {
         }
 
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int cid = Integer.parseInt(req.getParameter("cid"));
+        Contactdao dao = new Contactdao(dbconnect.getConnection());
+        boolean f = dao.delete(cid);
+        HttpSession session = req.getSession();
+        if(f){
+            session.setAttribute("suc-delete","Successfully delete");
+            resp.sendRedirect("viewContact.jsp");
+        }else{
+            session.setAttribute("error-delete","error delete");
+            resp.sendRedirect("delete.jsp");
+        }
+
+    }
 }
